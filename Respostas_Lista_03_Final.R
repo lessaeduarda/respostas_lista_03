@@ -5,7 +5,7 @@
 
 # Questão 1:
 
-# Link do repositório: 
+# Link do repositório: https://github.com/lessaeduarda/respostas_lista_03
 
 # Questão 2:
 
