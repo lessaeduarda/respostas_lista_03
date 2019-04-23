@@ -88,7 +88,7 @@ mean(turmas_pe$NU_MATRICULAS)
 
 # Questão 6:
 
-# 6.1 - O número de docentes de Pernambuco que não declararam cor ou raça:
+# 6.1 - O percentual de docentes de Pernambuco que não declararam cor ou raça:
 require(ffbase)
 setwd("C:/Users/Duda/Desktop/PPGCP/Análise de Dados")
 docentes_ne <-read.csv2.ffdf(file = "DOCENTES_NORDESTE.csv", sep = "|", first.rows=100000)
@@ -96,7 +96,9 @@ docentes_ne <- as.data.frame(docentes_ne)
 docentes_pe <- subset(docentes_ne, docentes_ne$CO_UF == "26")
 # Total de docentes do Estado de Pernambuco: 412.663
 docentes_CorRaça0 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "0")  
-# Resultado: 181.573 
+# Docentes que não declararam cor ou raça: 181.573
+181573 / 412663
+# Resultado: 44%
 
 # 6.2 - O percentual de docentes do Estado de Pernambuco que se declararam pretos ou pardos no Censo Escolar de 2016:
 docentes_CorRaça2 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "2")
@@ -106,4 +108,4 @@ docentes_CorRaça3 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "3")
 14710 + 114718
 # = 129.428
 129428 / 412663
-# Resultado: 31,36409%
+# Resultado: 31,36%
