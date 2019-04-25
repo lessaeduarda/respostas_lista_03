@@ -1,6 +1,6 @@
 # Lista 3 
-# Disciplina: Análise de Dados
 # Professor: Davi Moreira
+# Disciplina: Análise de Dados
 # Aluna: Maria Eduarda R. N. Lessa
 
 # Questão 1:
@@ -9,9 +9,16 @@
 
 # Questão 2:
 
+# Atribuir valor a x:
 x <- 5
+
+# Atribuir valor a y:
 y <- 7
+
+# Definir objeto z como o resultado da soma de x + y:
 z <- x + y
+
+# Multiplicar pelo CPF:
 z * 10144642425
 # Resultado: 121735709100
 
@@ -32,8 +39,10 @@ data("mtcars")
 # Número de carburadores (carb)
 
 # 3.2 - O número de dimensões da base:
+
+# Checar dimensões da base mtcars:
 dim(mtcars)
-# 32 x 11 
+# [1] 32 11
 # 32 linhas por 11 colunas, ou 11 observações sobre 32 carros.
 
 # 3.3 - Impressão da terceira coluna da base:
@@ -71,41 +80,99 @@ Max.   :8.000
 
 # Questão 4:
 
-install.packages("ffbase", dependencies = TRUE) 
-require(ffbase)
-setwd("C:/Users/Duda/Desktop/PPGCP/Análise de Dados")
+# Instalar pacote ffbase:
+install.packages("ffbase", dependencies = TRUE)
+
+# Requerer pacote:
+require(ffbase) 
+
+# Definir diretório:
+setwd("C:/Users/Duda/Desktop/PPGCP/Análise de Dados") 
+
+# Abrir base de dados com o ffbase e atribuí-la ao objeto "turmas":
 turmas <- read.csv2.ffdf(file = "TURMAS.csv", sep = "|", first.rows = 100000)
-turmas <- as.data.frame(turmas)
+
+# Transformar "turmas" em data.frame:
+turmas <- as.data.frame(turmas) 
+
+# Filtrar turmas de Pernambuco, definir como objeto "turmas_pe":
 turmas_pe <- subset(turmas, turmas$CO_UF == "26")
-save(turmas_pe, file ="turmas_pe.RData")
+
+# Salvar a nova base de dados ("turmas_pe") em .RData:
+save(turmas_pe, file ="turmas_pe.RData") 
 
 # Questão 5:
 
+# Definir diretório:
 setwd("C:/Users/Duda/Desktop/PPGCP/Análise de Dados")
-load("turmas_pe.RData")
-mean(turmas_pe$NU_MATRICULAS)
+
+# Carregar base de dados "turmas_pe":
+load("turmas_pe.RData") 
+
+# Calcular a média do número de matrícula por turmas:
+mean(turmas_pe$NU_MATRICULAS) 
 # Resultado: 23,07089
 
 # Questão 6:
 
 # 6.1 - O percentual de docentes de Pernambuco que não declararam cor ou raça:
-require(ffbase)
+
+# Requerer pacote já instalado:
+require(ffbase) 
+
+# Definir diretório:
 setwd("C:/Users/Duda/Desktop/PPGCP/Análise de Dados")
+
+# Abrir base de dados com o ffbase e atribuí-la ao objeto "docentes_ne":
 docentes_ne <-read.csv2.ffdf(file = "DOCENTES_NORDESTE.csv", sep = "|", first.rows=100000)
-docentes_ne <- as.data.frame(docentes_ne)
-docentes_pe <- subset(docentes_ne, docentes_ne$CO_UF == "26")
+
+# Transformar "docentes_ne" em data.frame:
+docentes_ne <- as.data.frame(docentes_ne) 
+
+# Filtar docentes de Pernambuco, definir como objeto "docentes_ne":
+docentes_pe <- subset(docentes_ne, docentes_ne$CO_UF == "26") 
+
+# Checar dimensões da nova base de dados ("docentes_ne"):
+dim(docentes_pe)
+# [1] 412663    132
 # Total de docentes do Estado de Pernambuco: 412.663
-docentes_CorRaça0 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "0")  
-# Docentes que não declararam cor ou raça: 181.573
+
+# Filtar docentes de Pernambuco que não declararam cor ou raça, definir como objeto "docentes_CorRaça0":
+docentes_CorRaça0 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "0")
+
+# Checar dimensões da nova base ("docentes_CorRaça0"):
+dim(docentes_CorRaça0)
+# [1] 181573    132
+# Total de docentes que não declararam cor ou raça: 181.573
+
+# Calcular porcentagem de docentes de Pernambuco que não delcararam cor ou raça (total docentes_CorRaça0 / total docentes_pe):
 181573 / 412663
-# Resultado: 44%
+# [1] 0.4400031
+# Resultado = 44,00031%
 
 # 6.2 - O percentual de docentes do Estado de Pernambuco que se declararam pretos ou pardos no Censo Escolar de 2016:
+
+# Filtar docentes de Pernambuco que se declararam pretos (2), definir como objeto "docentes_CorRaça2":
 docentes_CorRaça2 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "2")
-# Docentes que se declararam pretos (cor/raça 2, segundo classificação do IBGE) = 14.710
+
+# Checar dimensões da base ("docentes_CorRaça2"):
+dim(docentes_CorRaça2)
+# [1] 14710   132
+# Docentes de Pernambuco que se declararam pretos (cor/raça 2, segundo classificação do IBGE) = 14.710
+
+# Filtar docentes de Pernambuco que se declararam pardos (3), definir como objeto "docentes_CorRaça3":
 docentes_CorRaça3 <- subset(docentes_pe, docentes_pe$TP_COR_RACA == "3")
-# Docentes que se declararam pardos (cor/raça 3, segundo classificação do IBGE) = 114.718
+
+# Checar dimensões da base ("docentes_CorRaça3"):
+dim(docentes_CorRaça3)
+# [1] 114718    132
+# Docentes de Pernambuco que se declararam pardos (cor/raça 3, segundo classificação do IBGE) = 114.718
+
+# Somar número de docentes que se declaram pretos com o número dos que se declararam pardos (docentes_CorRaça2 + docentes_CorRaça3) 
 14710 + 114718
 # = 129.428
+
+# Calcular porcentagem de docentes de Pernambuco que se declararam pretos ou pardos (docentes_CorRaça2 + docentes_CorRaça3 / docentes_pe):
 129428 / 412663
-# Resultado: 31,36%
+# [1] 0.3136409
+# Resultado: 31,36409%
